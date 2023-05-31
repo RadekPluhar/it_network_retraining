@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        a {
+            text-decoration: none;
+            color: black
+        }
+    </style>
+    <title>Vyhledání pojištěnce</title>
+</head>
+
+<body>
+    <a href="index"><button>Zpět na úvod</button></a>
+    <a href="creation-of-a-insured"><button>Přidat nového pojištěného</button></a>
+    <a href="list"><button>Vypsat všechny pojištěné</button></a>
+    <a href="search"><button>Vyhledat pojištěného</button></a>
+    <h1>Vyhledat pojištěného</h1>
+
+    <form method="post">
+
+        <label>
+            Jméno:
+            <input id="firstName" th:field="${insuranceRecordsDTO.firstName}" type="text" />
+        </label><br />
+
+        <label>
+            Příjmení:
+            <input id="surName" th:field="${insuranceRecordsDTO.surName}" type="text" />
+        </label><br />
+
+        <input type="submit" value="Najít" />
+
+        <div th:if="${answerSearching}">
+            <p th:text="${answerSearching}"></p>
+        </div>
+
+        <div th:if="${answerSearching}">
+            <div th:if="${answerSearching != 'Tohoto pojištěného v evidenci nemáme.'}">
+                <button><a href="delete">Smazat pojištěnce</a></button>
+            </div>
+        </div>
+
+    </form>
+
+</body>
+
+</html>
