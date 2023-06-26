@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+
+    <section>
+        <article class="caption">
+            <h1>
+                VYHLEDAT POJIŠTĚNCE
+            </h1>
+        </article>
+
+        <article>
+            <form method="post">
+                <div>
+                    <label for="searchFirstname" class="control-label">Jméno</label>
+                    <input id="searchFirstname" th:field="${searchDTO.searchFirstname}" class="form-control"
+                        type="text" />
+
+                </div>
+                <div>
+                    <label for="searchSurname" class="control-label">Příjmení</label>
+                    <input id="searchSurname" th:field="${searchDTO.searchSurname}" class="form-control" type="text" />
+
+                </div>
+                <div>
+                    <button type="submit" class="action-button">Vyhledat</button>
+                </div>
+            </form>
+        </article>
+
+        <article>
+            <ul th:if="${insuredFinded}" class="list-group" id="insured-list">
+                <li th:each="insured: ${insuredFinded}" class="list-group-item">
+                    <div th:replace="~{fragments/layout.html :: insured-extract}"></div>
+                </li>
+            </ul>
+        </article>
+
+        <article class="error" th:if="${message}">
+            <h4>Pojištěnec nenalezen</h4>
+        </article>
+    </section>
+
+    <div th:replace="~{fragments/layout.html :: filling-put}"></div>
+
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+
+</html>

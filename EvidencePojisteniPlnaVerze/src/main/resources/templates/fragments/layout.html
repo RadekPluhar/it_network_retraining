@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="description" content="Absolventský projekt rekvalifikačního kurzu programátor www aplikací." />
+    <meta name="keywords" content="rekvalifikace, Java, programování, www aplikace" />
+    <meta name="author" content="Radek Pluhař" />
+    <title>Evidence pojištění</title>
+
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css" />
+
+</head>
+
+<body>
+    <header th:fragment="header">
+        <nav class="d-flex justify-content-around">
+            <span class="logo">Evidence</span>
+            <a class="nav-button" th:href="@{/}"><button class="nav-color">
+                    ZPĚT NA ÚVOD
+                </button></a>
+            <a class="nav-button" th:href="@{/creation-of-a-insured}"><button class="nav-color">
+                    PŘIDAT NOVÉHO POJIŠTĚNCE
+                </button></a>
+            <a class="nav-button" th:href="@{/list}"><button class="nav-color">
+                    VYPSAT VŠECHNY POJIŠTĚNCE
+                </button></a>
+            <a class="nav-button" th:href="@{/search}"><button class="nav-color">
+                    VYHLEDAT POJIŠTĚNCE
+                </button></a>
+        </nav>
+    </header>
+
+    <div th:fragment="insured-update">
+        <div>
+            <label for="firstname" class="control-label">Jméno</label>
+            <input id="firstname" th:field="*{firstname}" class="form-control" type="text" />
+            <small class="text-danger" th:errors="*{firstname}"></small>
+        </div>
+        <div>
+            <label for="surname" class="control-label">Příjmení</label>
+            <input id="surname" th:field="*{surname}" class="form-control" type="text" />
+            <small class="text-danger" th:errors="*{surname}"></small>
+        </div>
+        <div>
+            <label for="telephoneNumber" class="control-label">Telefonní číslo</label>
+            <input id="telephoneNumber" th:field="*{telephoneNumber}" class="form-control" type="text" />
+            <small class="text-danger" th:errors="*{telephoneNumber}"></small>
+        </div>
+        <div>
+            <label for="age" class="control-label">Věk</label>
+            <input id="age" th:field="*{age}" class="form-control" type="number" />
+            <small class="text-danger" th:errors="*{age}"></small>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="action-button">Uložit</button>
+        </div>
+    </div>
+
+    <div th:fragment="insured-extract">
+        <p>
+            <strong><span th:text="${insured.firstname}"></span> <span th:text="${insured.surname}"></span></strong>,
+            <small>telefon:</small> <strong><span th:text="${insured.telephoneNumber}"></span></strong>,
+            <small>věk:</small> <strong><span th:text="${insured.age}"></span></strong>
+
+            <span class="edit-delete">
+                <a class="edit" th:href="@{'/edit/' + ${insured.insuredId}}">EDITOVAT</a> <a class="delete"
+                    th:href="@{'/delete/' + ${insured.insuredId}}">ODSTRANIT</a>
+            </span>
+        </p>
+    </div>
+
+    <div th:fragment="filling-put">
+        <div class="filling-upon"></div>
+        <div class="filling"></div>
+    </div>
+
+    <footer th:fragment="footer">
+        Radek Pluhař &copy;2023 | absolventský projekt rekvalifikačního kurzu u <a href="https://itnetwork.cz"
+            target="_blank">ITnetwork.cz</a>
+    </footer>
+
+</body>
+
+</html>

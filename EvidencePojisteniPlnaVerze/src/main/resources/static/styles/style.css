@@ -1,0 +1,139 @@
+body {
+    background-color: rgb(234, 234, 234);
+    margin: 30px 200px;
+}
+
+.logo {
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    display: block;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 20px;
+}
+
+nav {
+    background-color: rgb(181, 181, 181);
+    padding-top: 20px;
+    padding-bottom: 0px;
+}
+
+nav button {
+    font-weight: 900;
+    font-size: 0.8em;
+    color: rgb(118, 118, 118);
+    border-color: rgb(181, 181, 181);
+}
+
+.nav-button {
+    margin-top: 10px;
+}
+
+.nav-color {
+    background-color: rgb(234, 234, 234);
+}
+
+.nav-color:hover {
+    background-color: rgb(140, 140, 140);
+    color: white;
+}
+
+.success,
+.error {
+    color: rgb(249, 249, 249);
+    text-align: center;
+    padding: 15px 20px 15px 20px;
+    margin: 10px 5px 10px 5px;
+}
+
+.success {
+    background-color: rgb(8, 175, 52);
+}
+
+.error {
+    background-color: rgb(222, 9, 9);
+}
+
+.caption h1 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: rgb(147, 147, 147);
+    font-size: 1em;
+    font-weight: 900;
+}
+
+.central {
+    margin: 0 auto;
+}
+
+.edit-delete {
+    display: block;
+    text-align: right;
+}
+
+.edit,
+.delete {
+    font-weight: bold;
+    font-size: 0.8em;
+    text-decoration: none;
+    padding: 5px 7px;
+    color: black;
+    border-radius: 3px;
+}
+
+.edit {
+    background-color: rgb(207, 207, 207);
+}
+
+.edit:hover {
+    background-color: rgb(140, 140, 140);
+    color: white;
+}
+
+.delete {
+    background-color: rgb(255, 171, 97);
+}
+
+.delete:hover {
+    background-color: rgb(222, 9, 9);
+    color: white;
+}
+
+.action-button {
+    margin: 15px 0;
+    color: rgb(118, 118, 118);
+    font-weight: 700;
+    padding: 0px 5px;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 3px;
+}
+
+.action-button:hover {
+    background-color: rgb(140, 140, 140);
+    color: white;
+}
+
+.filling-upon {
+    background-color: rgb(234, 234, 234);
+    height: 15px;
+    margin: 0 auto;
+}
+
+.filling {
+    background-color: rgb(181, 181, 181);
+    height: 150px;
+    margin: 0 auto;
+}
+
+footer {
+    color: white;
+    text-align: center;
+    background-color: rgb(181, 181, 181);
+    padding: 10px 0px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: black;
+}

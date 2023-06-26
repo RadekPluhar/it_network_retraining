@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+
+    <section>
+        <article class="caption">
+            <h1>
+                APLIKACE PRO EVIDENCI POJIŠTĚNCŮ verze 30
+            </h1>
+        </article>
+
+        <div class="central">
+            <img th:src="@{/images/prelude.jpg}" class="img-fluid" alt="prelude" />
+        </div>
+    </section>
+
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+
+</html>

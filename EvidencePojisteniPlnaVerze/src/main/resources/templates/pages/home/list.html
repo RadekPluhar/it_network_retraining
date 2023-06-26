@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments/layout.html :: head}">
+    <title></title>
+</head>
+
+<body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+
+    <div class="success" th:if="${success}">
+        <h4>Pojištěnec upraven</h4>
+    </div>
+
+    <div class="error" th:if="${error}">
+        <h4>Pojištěnec nenalezen</h4>
+    </div>
+
+    <section>
+        <article class="caption">
+            <h1>
+                VYPSAT VŠECHNY POJIŠTĚNCE
+            </h1>
+        </article>
+
+        <article th:if="${insureds}">
+            <ul class="list-group" id="insured-list">
+                <li th:each="insured: ${insureds}" class="list-group-item">
+                    <div th:replace="~{fragments/layout.html :: insured-extract}"></div>
+                </li>
+            </ul>
+        </article>
+
+        <article class="error" th:if="${message}">
+            <h4>Evidence je prázdná</h4>
+        </article>
+    </section>
+
+    <div th:replace="~{fragments/layout.html :: filling-put}"></div>
+
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+
+</html>

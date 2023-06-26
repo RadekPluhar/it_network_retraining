@@ -1,130 +1,68 @@
 package cz.itnetwork.spring.controllers;
 
-import org.springframework.ui.Model;
-import cz.itnetwork.spring.models.dto.InsuranceRecordsDTO;
-import cz.itnetwork.spring.models.services.InsuranceRecordsService;
+import cz.itnetwork.spring.models.dto.InsuredDTO;
+import cz.itnetwork.spring.models.dto.mappers.InsuredMapper;
+import cz.itnetwork.spring.models.services.InsuredService;
+import cz.itnetwork.spring.models.services.InsuredServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.*;
 
 /**
- * controller for getting and posting data from front-end to back-end and back
+ * a class for pages: index and list of all insureds
  */
 @Controller
 public class HomeController {
 
     /**
-     * wiring of functions
+     * an interface for transferring data from the frontend to the database and back
      */
     @Autowired
-    private InsuranceRecordsService insuranceRecordsService;
+    private InsuredMapper insuredMapper;
 
     /**
-     * getting the website of index
-     *
-     * @param insuranceRecordsDTO data from front-end
-     * @param model               handover the result to view
-     * @return return website
+     * interface for working with the database
      */
-    @GetMapping("/index")
-    public String renderIndex(@ModelAttribute InsuranceRecordsDTO insuranceRecordsDTO, Model model) {
+    @Autowired
+    private InsuredService insuredService;
 
-        String numberOfInsureds = insuranceRecordsService.countOfInsureds();
-        model.addAttribute("answerNumberOfInsureds", numberOfInsureds);
+    /**
+     * implementation of interface functions for working with the database
+     */
+    @Autowired
+    private InsuredServiceImpl insuredServiceImpl;
 
-        return "index";
+    /**
+     * index page
+     *
+     * @return web page
+     */
+    @GetMapping("/")
+    public String renderIndex() {
+
+        return "pages/home/index";
     }
 
     /**
-     * getting the website of creation of insured
+     * a list of all insured persons
      *
-     * @param insuranceRecordsDTO data from front-end
-     * @return return website
-     */
-    @GetMapping("/creation-of-a-insured")
-    public String renderCreationOfInsured(@ModelAttribute InsuranceRecordsDTO insuranceRecordsDTO) {
-
-        return "creation-of-a-insured";
-    }
-
-    /**
-     * posting data from front-end of website of creation of insured
-     *
-     * @param insuranceRecordsDTO data from front-end
-     * @param model               handover the information (Uloženo) to view
-     * @return return website
-     */
-    @PostMapping("/creation-of-a-insured")
-    public String giveBackInsured(@ModelAttribute InsuranceRecordsDTO insuranceRecordsDTO, Model model) {
-
-        String insured = insuranceRecordsService.creatingOfInsured(insuranceRecordsDTO);
-        model.addAttribute("answerCreation", insured);
-
-        return "creation-of-a-insured";
-    }
-
-    /**
-     * getting the website of list
-     *
-     * @param insuranceRecordsDTO data from front-end
-     * @param model               handover the result to view
-     * @return return website
+     * @param model returns the query result
+     * @return web page
      */
     @GetMapping("/list")
-    public String renderList(@ModelAttribute InsuranceRecordsDTO insuranceRecordsDTO, Model model) {
+    public String renderList(Model model) {
+        List<InsuredDTO> insureds = insuredService.getAll();
+        if (insureds.size() > 0) {
+            model.addAttribute("insureds", insureds);
+        } else {
+            String message = "Tady nikdo není!";
+            model.addAttribute("message", message);
+        }
 
-        String listOfInsureds = insuranceRecordsService.showInsureds();
-        model.addAttribute("answerShowOfInsureds", listOfInsureds);
-
-        return "list";
+        return "pages/home/list";
     }
 
-    /**
-     * getting the website of search of insured
-     *
-     * @param insuranceRecordsDTO data from front-end
-     * @return return website
-     */
-    @GetMapping("/search")
-    public String renderSearchOfInsured(@ModelAttribute InsuranceRecordsDTO insuranceRecordsDTO) {
-
-        return "search";
-    }
-
-    /**
-     * posting data from front-end of website of search of insured
-     *
-     * @param insuranceRecordsDTO data from front-end
-     * @param model               handover the result to view
-     * @return return website
-     */
-    @PostMapping("/search")
-    public String giveBackSearchInsured(@ModelAttribute InsuranceRecordsDTO insuranceRecordsDTO, Model model) {
-
-        String insured = insuranceRecordsService.searchInsured(
-                insuranceRecordsDTO.getFirstName(),
-                insuranceRecordsDTO.getSurName()
-        );
-        model.addAttribute("answerSearching", insured);
-
-        return "search";
-    }
-
-    /**
-     * getting the website of the deleting of insured
-     *
-     * @param insuranceRecordsDTO data from front-end
-     * @param model               handover the information (Pojištěnec byl smazán) to view
-     * @return return website
-     */
-    @GetMapping("/delete")
-    public String renderDelete(@ModelAttribute InsuranceRecordsDTO insuranceRecordsDTO, Model model) {
-
-        String deletionInsured = insuranceRecordsService.deletionOfInsured();
-        model.addAttribute("answerDeletion", deletionInsured);
-
-        return "delete";
-    }
 }

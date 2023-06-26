@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+
+    <div class="success" th:if="${success}">
+        <h4>Pojištěnec uložen</h4>
+    </div>
+
+    <section>
+        <article class="caption">
+            <h1>
+                PŘIDAT NOVÉHO POJIŠTĚNCE
+            </h1>
+        </article>
+
+        <article>
+            <form method="post" th:action="@{/creation-of-a-insured}" th:object="${insuredDTO}">
+                <div th:replace="~{fragments/layout.html :: insured-update}"></div>
+            </form>
+        </article>
+    </section>
+
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+
+</html>
